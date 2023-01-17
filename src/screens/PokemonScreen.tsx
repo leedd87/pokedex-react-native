@@ -1,8 +1,13 @@
 import React from 'react'
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 export const PokemonScreen = () => {
     return (
-        <View>PokemonScreen</View>
+        <View>
+            <Text>
+
+                PokemonScreen
+            </Text>
+        </View>
     )
 }
