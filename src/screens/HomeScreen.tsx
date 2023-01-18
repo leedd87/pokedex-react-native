@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { Button, Image, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { createIconSetFromFontello } from 'react-native-vector-icons'
 import { usePokemonPaginated } from '../hooks/usePokemonPaginated'
 import { styles } from '../theme/appTheme'
 
@@ -11,7 +12,9 @@ export const HomeScreen = () => {
 
     const navigation = useNavigation()
 
-    usePokemonPaginated()
+    const { simplePokemonList, isLoading } = usePokemonPaginated()
+
+    console.log(simplePokemonList)
 
     return (
         <View>
