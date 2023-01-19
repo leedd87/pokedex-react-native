@@ -15,7 +15,7 @@ interface Props {
 
 
 export const PokemonCard = ({ pokemon }: Props) => {
-    const navigation = useNavigation<any>()
+    const navigation = useNavigation<any>()//en ts definir el <any> porque sino da error
 
     const [bgColor, setBgColor] = useState('grey')
     const isMounted = useRef(true)
