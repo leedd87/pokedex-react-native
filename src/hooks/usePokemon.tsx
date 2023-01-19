@@ -17,7 +17,7 @@ export const usePokemon = (id: string) => {
 
     useEffect(() => {
         loadPokemon()
-        pokemon
+
 
     }, [])
 
@@ -25,7 +25,8 @@ export const usePokemon = (id: string) => {
 
 
     return {
-        isLoading
+        isLoading,
+        pokemon
     }
 
 }
