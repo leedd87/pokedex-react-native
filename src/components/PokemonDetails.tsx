@@ -63,10 +63,6 @@ export const PokemonDetails = ({ pokemon }: Props) => {
                     uri={pokemon.sprites.back_shiny}
                     style={styles.basicSprite}
                 />
-                <FadeInImage
-                    uri={pokemon.sprites.back_shiny}
-                    style={styles.basicSprite}
-                />
             </ScrollView>
 
             {/*Skills*/}
