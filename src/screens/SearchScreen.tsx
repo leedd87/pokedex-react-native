@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, Text } from 'react-native';
+import { View, Text, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SearchInput } from '../components/SearchInput';
 
 export const SearchScreen = () => {
 
@@ -9,9 +10,12 @@ export const SearchScreen = () => {
     return (
         <View style={{
             flex: 1,
-            marginTop: top + 20
+            marginTop: (Platform.OS === 'ios') ? top : top + 20,
+            marginHorizontal: 20,
         }}>
-            <Text>SearchScreen</Text>
+
+            <SearchInput />
+
         </View>
     )
 }
