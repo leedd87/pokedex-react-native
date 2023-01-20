@@ -23,8 +23,6 @@ export const Navigator = () => {
         >
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
             <Stack.Screen name="PokemonScreen" component={PokemonScreen} />
-            {/* <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Settings" component={Settings} /> */}
         </Stack.Navigator>
     );
 }

@@ -20,15 +20,6 @@ export const HomeScreen = () => {
 
     return (
         <>
-            {/* <Text style={{
-                ...styles.title,
-                ...styles.globalMargin,
-                top: top + 20
-            }}>Pokedex</Text> */}
-            {/* <Button
-                title='Pokemon'
-                onPress={() => navigation.navigate('PokemonScreen')}
-            /> */}
             <Image
                 source={require('../assets/pokebola.png')}
                 style={styles.pokebolaBG}
