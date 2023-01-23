@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, Platform, ActivityIndicator, StyleSheet, FlatList, Dimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Loading } from '../components/Loading';
 import { PokemonCard } from '../components/PokemonCard';
 import { SearchInput } from '../components/SearchInput';
 import { usePokemonSearch } from '../hooks/usePokemonSearch';
+import { SimplePokemon } from '../interfaces/pokemonInterfaces';
 import { styles } from '../theme/appTheme';
 
 const screenWidth = Dimensions.get('window').width
@@ -13,6 +14,33 @@ export const SearchScreen = () => {
 
     const { top } = useSafeAreaInsets()
     const { isFetching, simplePokemonList } = usePokemonSearch()
+
+    const [pokemonFiltered, setPokemonFiltered] = useState<SimplePokemon[]>([])
+
+    const [term, setTerm] = useState('')
+
+    useEffect(() => {
+        if (term.length === 0) {
+            return setPokemonFiltered([])
+        }
+
+        if (isNaN(Number(term))) {
+
+            setPokemonFiltered(
+                simplePokemonList.filter((poke) => poke.name.toLowerCase().includes(term.toLowerCase()))
+
+            )
+        } else {
+
+            const pokemonById = simplePokemonList.find(poke => poke.id === term)
+
+            setPokemonFiltered(
+                pokemonById ? [pokemonById] : []
+            )
+        }
+
+
+    }, [term])
 
     if (isFetching) {
         return (
@@ -27,6 +55,7 @@ export const SearchScreen = () => {
         }}>
 
             <SearchInput
+                onDebounce={(value) => setTerm(value)}
                 style={{
                     position: 'absolute',
                     zIndex: 999,
@@ -36,7 +65,7 @@ export const SearchScreen = () => {
             />
 
             <FlatList
-                data={simplePokemonList}
+                data={pokemonFiltered}
                 keyExtractor={(pokemon) => pokemon.id}
                 showsVerticalScrollIndicator={false}
                 numColumns={2}
@@ -48,7 +77,7 @@ export const SearchScreen = () => {
                         marginTop: (Platform.OS === 'ios') ? top + 60 : top + 80,
 
 
-                    }}>Pokedex</Text>
+                    }}>{term}</Text>
 
                 )}
                 renderItem={({ item }) => (
